@@ -1,0 +1,39 @@
+.DS_Store
+xcuserdata/
+*.ipa
+*.dSYM.zip
+*.dSYM
+Packages/
+build/
+.build/
+**/Config.xcconfig
+
+# Xcode user-specific files
+*.xcuserstate
+*.xcuserdatad/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Swift Package Manager
+.swiftpm/
+*.swiftpm/
+
+# Derived data (build artifacts)
+DerivedData/
+
+# Xcode Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# CocoaPods (if you use it)
+Pods/
+*.xcworkspace
+
+# Fastlane (if you use it)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection (if you use it)
+iOSInjectionProject/
