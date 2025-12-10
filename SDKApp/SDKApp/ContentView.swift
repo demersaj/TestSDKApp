@@ -35,27 +35,38 @@ struct ContentView: View {
 			
 			Spacer()
 			
-			if viewModel.promptString.count > 0 {
-				HStack {
-					TextField("Enter a prompt", text: $viewModel.promptString)
-						.textFieldStyle(RoundedBorderTextFieldStyle())
-						.padding()
-					
-					Button {
-						Task { await viewModel.generateText() }
-					} label: {
-						Text("Send")
-					}
-				}
-				.padding()
+			HStack {
+				TextField("Enter a prompt", text: $viewModel.promptString)
+					.textFieldStyle(RoundedBorderTextFieldStyle())
+					.padding()
 				
-				if viewModel.isGenerating {
-					ProgressView()
+				Button {
+					Task { await viewModel.generateText() }
+				} label: {
+					Text("Send")
 				}
+				.disabled(viewModel.promptString.isEmpty)
+			}
+			.padding()
+			
+			if viewModel.isGenerating {
+				ProgressView()
 			}
 			
 			if let responseString = viewModel.responseString {
-				Text(responseString)
+				ScrollView {
+					Text(responseString)
+						.frame(maxWidth: .infinity, alignment: .leading)
+						.padding()
+				}
+				.frame(maxHeight: 300)
+				.background(Color.gray.opacity(0.1))
+				.cornerRadius(8)
+				.overlay(
+					RoundedRectangle(cornerRadius: 8)
+						.stroke(Color.gray.opacity(0.3), lineWidth: 1)
+				)
+				.padding(.horizontal)
 			}
 						
 			if let downloadProgress = viewModel.downloadProgress {
